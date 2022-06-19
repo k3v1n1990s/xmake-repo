@@ -66,9 +66,7 @@ before_build("windows", function (target)
 			local yy_chunk_path = YY_Thunks_Root .. [[\objs\]] .. arch .. [[\YY_Thunks_for_WinXP.obj]]
 			print([[yy thunk path:]] .. yy_chunk_path)
 			table.insert(target:objectfiles(), yy_chunk_path)
-			if(arch=="x64") then
-				target:add("links","Advapi32")
-			end
+			target:add("links","advapi32","user32")
 		end
         
         
