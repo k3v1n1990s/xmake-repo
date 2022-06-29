@@ -9,7 +9,7 @@ package("xbyak")
         local configs = {}
         io.writefile("xmake.lua", [[
             add_rules("mode.release", "mode.debug")
-            target("phnt")
+            target("xbyak")
                set_kind("headeronly")
                add_headerfiles("xbyak/*.h", {prefixdir = "xbyak"})
         ]])
