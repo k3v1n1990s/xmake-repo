@@ -12,7 +12,7 @@ package("wow64pp")
             add_rules("mode.release", "mode.debug")
             target("phnt")
                set_kind("headeronly")
-               add_headerfiles("inlcude/*.hpp")
+               add_headerfiles("include/*.hpp")
         ]])
         if package:config("shared") then
             configs.kind = "shared"
