@@ -22,6 +22,8 @@ package("zmqpp")
             target("zmqpp")
                set_kind("static")
                add_defines("ZMQ_STATIC","ZMQPP_STATIC_DEFINE")
+               add_headerfiles("src/zmqpp/*.hpp", {prefixdir = "zmqpp"})
+               add_headerfiles("src/zmqpp/*.h", {prefixdir = "zmqpp"})
                add_files(
                     "src/zmqpp/actor.cpp",
                     "src/zmqpp/context.cpp",
