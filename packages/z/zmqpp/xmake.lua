@@ -5,7 +5,7 @@ package("zmqpp")
     add_urls("https://github.com/zeromq/zmqpp/archive/refs/tags/$(version).tar.gz",
              "https://github.com/zeromq/zmqpp.git")
     add_versions("4.2.0", "c1d4587df3562f73849d9e5f8c932ca7dcfc7d8bec31f62d7f35073ef81f4d29")
-
+    add_deps("zeromq")
     on_install(function (package)
         local configs = {}
         io.writefile("src/zmqpp/zmqpp_export.h", [[
