@@ -5,6 +5,7 @@ package("zmqpp")
     add_urls("https://github.com/zeromq/zmqpp/archive/refs/tags/$(version).tar.gz",
              "https://github.com/zeromq/zmqpp.git")
     add_versions("4.2.0", "c1d4587df3562f73849d9e5f8c932ca7dcfc7d8bec31f62d7f35073ef81f4d29")
+    add_patches("4.2.0", path.join(os.scriptdir(), "patches", "4.2.0", "0001-export-ctx.patch"),  "7ce909fff26177341d15dd6cd3726894ebf211826567abfa1e07135eb96dd586")
     add_deps("zeromq")
     on_install(function (package)
         local configs = {}

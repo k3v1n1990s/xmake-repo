@@ -1,0 +1,14 @@
+diff --git a/src/zmqpp/actor.hpp b/src/zmqpp/actor.hpp
+index 7c14f74..09c9474 100644
+--- a/src/zmqpp/actor.hpp
++++ b/src/zmqpp/actor.hpp
+@@ -115,7 +115,7 @@ namespace zmqpp
+      *       rethrown in the actor's constructor.
+      */
+     bool stop(bool block = false);
+-
++    inline static context& pipe_ctx() { return actor_pipe_ctx_; }
+   private:
+     /**
+      * Call a user defined function and performs cleanup once it returns.
+-- 
