@@ -79,7 +79,7 @@ before_build("windows", function (target)
 			end
 			
 			table.insert(target:objectfiles(), yy_chunk_path)
-			--target:add("links","advapi32","user32")
+			target:add("links","advapi32","user32")
 		end
         
         
