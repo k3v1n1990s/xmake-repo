@@ -14,6 +14,7 @@ package("yy-thunks")
         print("$(reg HKCU\\Code\\YY-Thunks;Root)")
         io.writefile("$(env LOCALAPPDATA)/.xmake/xmakerc.lua", [=[
 before_build("windows", function (target)
+	
     local function find_in_file()
         for _, dir in ipairs(os.dirs("$(projectdir)/*")) do
             name = dir:match(".*\\(.*)")
@@ -33,6 +34,14 @@ before_build("windows", function (target)
     if #VC_LTL_Root==0 then
         return
     end
+	
+	if os.isdir(VC_LTL_Root) == false then
+		local p = os.dirs(path.join(import("core.package.package").installdir(), 'v', 'vc-ltl5', '*', '*', 'vc-ltl5'))
+		if #p then
+			VC_LTL_Root = p[1]
+		end
+	end
+	
     local WindowsTargetPlatformMinVersion = "5.1.2600.0"
 
     import("core.tool.toolchain")
@@ -64,9 +73,13 @@ before_build("windows", function (target)
     if(target:kind()=="binary" or target:kind()=="shared") then
 		if #YY_Thunks_Root ~= 0 then
 			local yy_chunk_path = YY_Thunks_Root .. [[\objs\]] .. arch .. [[\YY_Thunks_for_WinXP.obj]]
-			print([[yy thunk path:]] .. yy_chunk_path)
+			if os.isfile(yy_chunk_path) == false then
+				print([[warning: yy thunk not found:]] .. yy_chunk_path)
+				return
+			end
+			
 			table.insert(target:objectfiles(), yy_chunk_path)
-			target:add("links","advapi32","user32")
+			--target:add("links","advapi32","user32")
 		end
         
         
