@@ -15,6 +15,8 @@ target("sciter-js-sdk")
 		else
 		arch = "x32"
 	end
+	   os.mkdir(path.join(target:installdir(), "lib"))
+       os.cp("./bin/$(plat)/*.exe", path.join(target:installdir(), "lib"))
 	   os.cp("./bin/$(plat)/".. arch, path.join(target:installdir(), "lib"))
 	   os.cp("./bin.lite/$(plat)/" .. arch, path.join(target:installdir(), "lib/lite"))
 	   os.cp("./include", path.join(target:installdir(), "include/sciter"))
